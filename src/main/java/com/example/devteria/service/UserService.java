@@ -54,9 +54,9 @@ public class UserService {
         return existingUser;
     }
 
-    public User existingUser(String userId) throws RuntimeException{
+    public User existingUser(String userId){
         return userRepository.findById(userId).orElseThrow(
-                () -> new RuntimeException("User not found with id")
+                () -> new RuntimeException("User not found with id" )
         );
     }
 

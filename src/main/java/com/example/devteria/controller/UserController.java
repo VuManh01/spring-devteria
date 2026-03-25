@@ -34,34 +34,25 @@ public class UserController {
     @GetMapping("/{userId}")
     public User getUserDetail(
             @PathVariable String userId) {
-        try{
             return userService.getUserDetail(userId);
 
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
     }
 
     @PutMapping("/{userId}")
     public User updateUser(
             @PathVariable String userId,
             @RequestBody UserUpdateRequest request) {
-        try{
+
             return userService.updateUser(userId, request);
 
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
     }
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<String>  deleteUser(
             @PathVariable String userId) {
-        try{
+
             userService.deleteUser(userId);
             return ResponseEntity.ok("User deleted successfully");
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
+
     }
 }
