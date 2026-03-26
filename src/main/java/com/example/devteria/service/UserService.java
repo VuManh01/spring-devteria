@@ -4,6 +4,8 @@ package com.example.devteria.service;
 import com.example.devteria.dtos.request.UserCreationRequest;
 import com.example.devteria.dtos.request.UserUpdateRequest;
 
+import com.example.devteria.exception.AppException;
+import com.example.devteria.exception.ErrorCode;
 import com.example.devteria.model.User;
 import com.example.devteria.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +22,7 @@ public class UserService {
         User user = new User();
 
         if(userRepository.existsByUsername(request.getUsername())){
-            throw new RuntimeException("Username already exists");
+            throw new AppException(ErrorCode.USER_EXISTED);
         }
 
         user.setUsername(request.getUsername());

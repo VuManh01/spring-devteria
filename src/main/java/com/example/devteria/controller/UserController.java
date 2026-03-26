@@ -2,6 +2,7 @@ package com.example.devteria.controller;
 
 import com.example.devteria.dtos.request.UserCreationRequest;
 import com.example.devteria.dtos.request.UserUpdateRequest;
+import com.example.devteria.dtos.response.ApiResponse;
 import com.example.devteria.model.User;
 import com.example.devteria.service.UserService;
 import jakarta.validation.Valid;
@@ -19,10 +20,15 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("")
-    public ResponseEntity<String> createUser(
+    public ApiResponse<User> createUser(  //class ApiResponse <T> => cho nên bên này phải trả về ApiResponse và với class là User => khi này T = User
             @RequestBody @Valid UserCreationRequest request) {
-        userService.createUser(request);
-        return ResponseEntity.ok("User created successfully ");
+        ApiResponse<User> apiResponse = new ApiResponse<>();
+
+        apiResponse.setCode(1000);  // bên ApiResponse ta gán code 1000 sẵn nên có thể bỏ qua dòng này, tôi để đây để có cái nhìn trực quan hơn
+        apiResponse.setMessage("User created successfully");
+        apiResponse.setResult(userService.createUser(request));
+
+        return apiResponse;
     }
 
     @GetMapping("")
