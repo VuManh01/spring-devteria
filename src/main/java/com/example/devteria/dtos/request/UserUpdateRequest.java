@@ -1,14 +1,17 @@
 package com.example.devteria.dtos.request;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
 
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserUpdateRequest {
 
-    private String password;
-    private String firstName;
-    private String lastName;
-    private LocalDate dateOfBirth;
+    String password;
+    String firstName;
+    String lastName;
+    LocalDate dateOfBirth;
 }

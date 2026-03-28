@@ -3,6 +3,7 @@ package com.example.devteria.controller;
 import com.example.devteria.dtos.request.UserCreationRequest;
 import com.example.devteria.dtos.request.UserUpdateRequest;
 import com.example.devteria.dtos.response.ApiResponse;
+import com.example.devteria.dtos.response.UserResponse;
 import com.example.devteria.model.User;
 import com.example.devteria.service.UserService;
 import jakarta.validation.Valid;
@@ -28,6 +29,8 @@ public class UserController {
         apiResponse.setMessage("User created successfully");
         apiResponse.setResult(userService.createUser(request));
 
+        userService.createUser(request);
+
         return apiResponse;
     }
 
@@ -38,7 +41,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public User getUserDetail(
+    public UserResponse getUserDetail(
             @PathVariable String userId) {
             return userService.getUserDetail(userId);
 
