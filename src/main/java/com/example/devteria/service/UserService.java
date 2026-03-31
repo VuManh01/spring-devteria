@@ -11,6 +11,8 @@ import com.example.devteria.mapper.UserMapper;
 import com.example.devteria.model.User;
 import com.example.devteria.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,9 +30,15 @@ public class UserService {
         }
         User user = userMapper.toUser(request);
 
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+
         //gọi userRepo=> để tạo row mới trong table gọi đến hàm save()
-        User newUser = userRepository.save(user);
-        return newUser;
+//        User newUser = userRepository.save(user);
+//        return newUser;
+
+        return userRepository.save(user);
+
     }
 
     public List<User> getAllUsers(){

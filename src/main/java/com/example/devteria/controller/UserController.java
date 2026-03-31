@@ -23,13 +23,14 @@ public class UserController {
     @PostMapping("")
     public ApiResponse<User> createUser(  //class ApiResponse <T> => cho nên bên này phải trả về ApiResponse và với class là User => khi này T = User
             @RequestBody @Valid UserCreationRequest request) {
+
         ApiResponse<User> apiResponse = new ApiResponse<>();
 
         apiResponse.setCode(1000);  // bên ApiResponse ta gán code 1000 sẵn nên có thể bỏ qua dòng này, tôi để đây để có cái nhìn trực quan hơn
         apiResponse.setMessage("User created successfully");
         apiResponse.setResult(userService.createUser(request));
 
-        userService.createUser(request);
+//         
 
         return apiResponse;
     }
