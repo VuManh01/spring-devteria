@@ -8,7 +8,8 @@ public enum ErrorCode {
     USER_EXISTED(1002, "User not already exists"),
     USERNAME_INVALID(1003, "Username is invalid"),
     PASSWORD_INVALID(1004, "Password is invalid"),
-    USER_NOT_EXISTED(1005, "User not existed")
+    USER_NOT_EXISTED(1005, "User not existed"),
+    UNMATCH_PASSWORD(1006, "Password not match")
     ;
 
 
